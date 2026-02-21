@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="max-w-xl mx-auto p-3">
     <h1 class="text-2xl font-bold mb-4">
       {{ title }}
     </h1>

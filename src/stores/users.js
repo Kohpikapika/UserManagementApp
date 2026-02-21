@@ -25,6 +25,14 @@ export const users = ref([
     createdAt: '2020-04-01',
     updatedAt: '2021-05-10',
   },
+  {
+    id: '4',
+    name: 'Hana Yashiro',
+    email: 'hana@example.com',
+    address: 'Shizuoka, Japan',
+    createdAt: '2001-04-01',
+    updatedAt: '2002-05-10',
+  },
 ])
 
 export function getUserById(id) {
