@@ -1,31 +1,37 @@
-# ユーザ管理アプリ (Vue 3)
+# ユーザ管理アプリ
+Vue.js + Viteで作ったシンプルなユーザー管理アプリです。  
+CRUD操作（作成・閲覧・更新・削除）ができ、フォームバリデーションやコンポーネント化も行っています。
 
-Vue 3（Composition API）を用いて作成した、  
-ユーザー管理（CRUD）機能を備えたシンプルなフロントエンドアプリです。
-
-新規登録・編集・削除を **同一コンポーネントで安全に切り替える設計** を意識し、  
-保守性・拡張性を考慮して実装しています。
+デプロイ済みで、OGP対応もしているのでURLを共有したときにプレビュー画像が表示されます。
 
 ---
 
-## 🔧 使用技術
-
-- Vue 3（Composition API）
-- Vue Router
-- JavaScript (ES2020+)
-- Tailwind CSS
-- Git / GitHub
+## デモ
+https://usermanagementapp.pages.dev/
 
 ---
 
-## ✨ 主な機能
+## OGP Preview
+![App Preview](https://usermanagementapp.pages.dev/ogp.png)
+
+---
+
+## 🔧 技術スタック
+- Vue 3 + Vite
+- TailwindCSS
+- Cloudflare Pages（デプロイ）
+- OGP metaタグ（リンクプレビュー用）
+
+---
+
+## ✨ 機能
 - ユーザー一覧表示
-- ユーザー詳細表示
-- ユーザー新規登録
+- ユーザー新規作成
 - ユーザー編集
 - ユーザー削除
-- 入力バリデーション（必須項目チェック）
-- トーストによる操作フィードバック
+- 入力必須項目バリデーション
+- コンポーネント化による再利用可能なUI
+- トースト通知表示
 
 ---
 
