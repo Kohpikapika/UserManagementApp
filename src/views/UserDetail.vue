@@ -17,6 +17,10 @@
         {{ user.email }}
       </UserDetailItem>
 
+      <UserDetailItem label="住所">
+        {{ user.address }}
+      </UserDetailItem>
+
       <UserDetailItem label="登録日時">
         {{ user.createdAt }}
       </UserDetailItem>
