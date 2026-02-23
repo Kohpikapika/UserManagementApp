@@ -4,7 +4,7 @@
       {{ title }}
     </h1>
 
-    <form @submit.prevent="save">
+    <div>
       <div
         v-for="field in fields"
         :key="field.key"
@@ -30,7 +30,8 @@
 
       <div class="flex gap-3">
         <button
-          type="submit"
+          type="button"
+          @click="save"
           class="px-4 py-2 bg-blue-500 text-white rounded"
         >
           {{ saveLabel }}
@@ -53,7 +54,7 @@
           削除
         </button>
       </div>
-    </form>
+    </div>
   </div>
   <Toast
     :message="toastMessage"
