@@ -59,6 +59,12 @@
     :message="toastMessage"
     :visible="showToast"
   />
+  <ConfirmModal
+    :visible="showConfirm"
+    message="本当に削除しますか？"
+    @confirm="deleteUserConfirmed"
+    @cancel="showConfirm = false"
+  />
 </template>
 
 <script setup>
@@ -71,6 +77,7 @@ import {
   deleteUser,
 } from '../stores/users'
 import Toast from '../components/Toast.vue'
+import ConfirmModal from '../components/ConfirmModal.vue'
 
 const router = useRouter()
 
@@ -87,6 +94,8 @@ const title = computed(() =>
 const saveLabel = computed(() =>
   isNew.value ? '登録' : '保存'
 )
+
+const showConfirm = ref(false)
 
 const user = isNew.value ? null : getUserById(props.id)
 
@@ -143,13 +152,15 @@ function save() {
 }
 
 function remove() {
-  const ok = confirm('本当に削除しますか？')
-  if (!ok) return
+  showConfirm.value = true
+}
 
+function deleteUserConfirmed() {
+  // 本当に削除する処理
   deleteUser(props.id)
-
   toastMessage.value = '削除しました'
   showToast.value = true
+  showConfirm.value = false
 
   setTimeout(() => {
     showToast.value = false
