@@ -17,7 +17,7 @@ https://usermanagementapp.pages.dev/
 ---
 
 ## 🔧 技術スタック
-- Vue 3 + Vite
+- Vue 3（Composition API ベース） + Vite
 - TailwindCSS
 - Cloudflare Pages（デプロイ）
 - OGP metaタグ（リンクプレビュー用）
@@ -35,51 +35,25 @@ https://usermanagementapp.pages.dev/
 
 ---
 
-## 🧠 設計のポイント
-
-### 1. 新規 / 編集を同一コンポーネントで実装
-
-- ルーティングの `id` パラメータにより  
-  **新規作成（id = new）/ 編集** を判定
-- `isNew` フラグを用いて UI・処理を分岐
-
-```js
-const isNew = computed(() => props.id === 'new')
-```
-
-### 2. fields 定義から form を動的生成
-入力項目を fields に集約し、  
-フォーム状態・バリデーション・表示制御を一元管理しています。
-```js
-const form = reactive(
-  Object.fromEntries(
-    fields.map(field => [
-      field.key,
-      user?.[field.key] ?? ''
-    ])
-  )
-)
-```
-これにより、  
-項目追加時の修正箇所を最小限に抑える設計にしています。
-
-### 3. 状態管理の一本化
-- フォームの状態は`form`に集約
-- 個別の`ref(name, email...)`は持たず、状態の二重管理を避ける構成
+## 🧠 設計上工夫した点
+- form と ConfirmModal（削除確認のモーダル） を分離し、submit事故を防止
+- モバイル視点で table ではなくカード型UIを採用
+- トーストを中央表示にして視認性を向上
 
 ---
 
 ## 📁 ディレクトリ構成（抜粋）
 ```txt
 src/
-├─ components/
+├─ components/    # 再利用可能なUIコンポーネント
+│  ├─ ConfirmModal.vue
 │  ├─ Toast.vue
 │  └─ UserDetailItem.vue
-├─ views/
+├─ views/         # 画面単位のコンポーネント
 │  ├─ UsersList.vue
 │  ├─ UserDetail.vue
 │  └─ UserEdit.vue
-├─ stores/
+├─ stores/        # ユーザー情報の状態管理
 │  └─ users.js
 └─ router/
 ```
@@ -103,5 +77,5 @@ npm run dev
 ## 📌 今後の改善予定
 - 入力項目の type 定義（input / textarea 切替）
 - バリデーションロジックの composable 化
-- API 連携（バックエンド接続）
-
+- API 連携（バックエンド接続）  
+※ 学習段階を考慮し、現時点ではフロントエンド単体構成に留めています。
